@@ -5,9 +5,15 @@ import NavBar from "./components/navbar"
 import { threads } from "./dummy/dummy"
 import { ToastContainer } from "react-toastify"
 import { injectStyle } from "react-toastify/dist/inject-style"
+import { useEffect } from "react"
+import runOnesignal from "./onesignal/onesignal"
 
 function App() {
-  injectStyle()
+  useEffect(() => {
+    injectStyle()
+    runOnesignal()
+  })
+
   return (
     <div className="App relative">
       <Header />
