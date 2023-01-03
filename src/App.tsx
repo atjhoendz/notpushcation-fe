@@ -1,32 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css"
+import Feeds from "./components/feeds"
+import Header from "./components/header"
+import NavBar from "./components/navbar"
+import { threads } from "./dummy/dummy"
+import { ToastContainer } from "react-toastify"
+import { injectStyle } from "react-toastify/dist/inject-style"
+import { useEffect } from "react"
+import runOnesignal from "./onesignal/onesignal"
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    injectStyle()
+    runOnesignal()
+  })
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="App relative">
+      <Header />
+      <Feeds threads={threads} />
+      <NavBar />
+      <ToastContainer limit={1} />
     </div>
   )
 }
