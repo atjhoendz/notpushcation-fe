@@ -1,6 +1,7 @@
 import { Thread } from "../types/model"
 import communityLogo from "../assets/community-logo.svg"
-import { toast, ToastContent } from "react-toastify"
+import { toast } from "react-toastify"
+import { Link } from "react-router-dom"
 
 const ThreadComponent = (props: { thread: Thread }) => {
   let leadMedia
@@ -53,14 +54,20 @@ const ThreadComponent = (props: { thread: Thread }) => {
             </div>
           </div>
         </div>
-        <div className="text-left" onClick={notify}>
-          <div className="mb-1 text-lg font-bold hover:cursor-pointer">
-            {props.thread.title}
+        <Link to={`/thread/${props.thread.id}`}>
+          <div className="text-left">
+            <div className="mb-1 text-lg font-bold hover:cursor-pointer">
+              {props.thread.title}
+            </div>
+            <div className="text-justify">
+              {props.thread.content.length > 120
+                ? props.thread.content.substring(0, 117) + "..."
+                : props.thread.content}
+            </div>
           </div>
-          <div className="text-justify">{props.thread.content}</div>
-        </div>
+        </Link>
       </div>
-      {leadMedia}
+      {/* {leadMedia} */}
     </div>
   )
 }

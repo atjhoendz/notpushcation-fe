@@ -16,4 +16,5 @@ export type Thread = {
   created_by: User
   created_at: string
   lead_media?: string
+  is_live_blog?: boolean
 }

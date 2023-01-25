@@ -1,21 +1,29 @@
-import React from "react"
-import { feedProps, feedState } from "../types/component"
 import ThreadComponent from "./thread"
+import { feedProps } from "../types/component"
 
-class Feeds extends React.Component<feedProps, feedState> {
-  state: Readonly<feedState> = {
-    threads: this.props.threads,
-  }
+export default function Feeds({ threads }: feedProps) {
+  // const [threads, setThreads] = useState<Array<Thread>>([])
 
-  render() {
-    return (
-      <div className="Feed overflow-y-auto">
-        {this.state.threads.map((val, id) => {
-          return <ThreadComponent key={id} thread={val} />
-        })}
-      </div>
-    )
-  }
+  // useEffect(() => {
+  //   fetchThread()
+  // }, [])
+
+  // const fetchThread = async () => {
+  //   try {
+  //     const res = await axios.get(`${APIBaseURL}/threads`)
+  //     console.log(res)
+  //     console.log(res.data)
+  //     setThreads(res.data)
+  //   } catch (err) {
+  //     console.log("fetch thread error. err: ", err)
+  //   }
+  // }
+
+  return (
+    <>
+      {threads.map((val, id) => {
+        return <ThreadComponent key={id} thread={val} />
+      })}
+    </>
+  )
 }
-
-export default Feeds
